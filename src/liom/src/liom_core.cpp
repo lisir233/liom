@@ -13,14 +13,19 @@ void Core::HandleLaserScanMessage(const sensor_msgs::LaserScan::ConstPtr& scan)
 
     tf2::Transform global_pose;
     tf2::Transform scan2scan_pose;
+
     projector_.projectLaser(*scan, cloud);     
     //2.点云匹配
-
-    //判定当前子点云地图中是否为空  
-    if(submap.num_range_data() == 0)
-    {
+    
+    //如果上一个子地图已经完成
+    if(submap.num_range_data() == 0){
         submap.Init(global_pose,cloud);
     }
+    else{
+        submap.InsertPointcloud(scan2scan_pose,cloud);
+    }
+
+
 
 
     //2.2获取当前帧姿态
