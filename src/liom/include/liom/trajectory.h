@@ -10,15 +10,5 @@ public:
     ~Trajectory();
 };
 
-Trajectory::Trajectory(/* args */)
-{
-}
-
-Trajectory::~Trajectory()
-{
-}
- Trajectory{
-
-}
-}
+};
 #endif

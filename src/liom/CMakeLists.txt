@@ -215,7 +215,16 @@ link_directories(${csm_LIBRARY_DIRS})
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
-add_executable(liom_node src/liom_node.cpp src/liom_node_main.cpp src/liom_core.cpp)
+add_executable(liom_node
+ src/liom_node.cpp
+ src/liom_node_main.cpp
+ src/liom_core.cpp
+ src/scanmatch.cpp
+ src/trajectory.cpp 
+ src/submap.cpp 
+ 
+ 
+ )
 target_link_libraries(liom_node  ${catkin_LIBRARIES}  ${PCL_LIBRARIES} ${csm_LIBRARIES})
 add_dependencies(liom_node
 ${csm_EXPORTED_TARGETS} 

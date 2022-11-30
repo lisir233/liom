@@ -4,6 +4,7 @@
 #include <sensor_msgs/LaserScan.h>
 #include <laser_geometry/laser_geometry.h>
 #include <sensor_msgs/PointCloud2.h>
+#include "submap.h"
 namespace liom{
 
 class Core{

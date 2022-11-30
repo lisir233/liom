@@ -153,6 +153,26 @@ void ScanMatch::InitParams()
     input_.use_sigma_weights = 0;
 }
 /**
+ * 雷达数据间的角度是固定的，因此可以将对应角度的cos与sin值缓存下来，不用每次都计算
+ */
+void ScanMatch::CreateCache(const sensor_msgs::LaserScan::ConstPtr &scan_msg)
+{
+    a_cos_.clear();
+    a_sin_.clear();
+    double angle;
+
+    for (unsigned int i = 0; i < scan_msg->ranges.size(); i++)
+    {
+        angle = scan_msg->angle_min + i * scan_msg->angle_increment;
+        a_cos_.push_back(cos(angle));
+        a_sin_.push_back(sin(angle));
+    }
+
+    input_.min_reading = scan_msg->range_min;
+    input_.max_reading = scan_msg->range_max;
+}
+
+/**
  * 使用PLICP进行帧间位姿的计算
  */
 void ScanMatch::ScanMatchWithPLICP(LDP &curr_ldp_scan, const ros::Time &time)

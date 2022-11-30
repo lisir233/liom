@@ -1,5 +1,6 @@
 #include <liom_core.h>
 #include <laser_geometry/laser_geometry.h>
+#include "submap.h"
 namespace liom{
 Core::Core(){
 
@@ -10,8 +11,8 @@ void Core::HandleLaserScanMessage(const sensor_msgs::LaserScan::ConstPtr& scan)
     sensor_msgs::PointCloud2 cloud;
 
 
-    tf::Transform global_pose;
-    tf::Transform scan2scan_pose;
+    tf2::Transform global_pose;
+    tf2::Transform scan2scan_pose;
     projector_.projectLaser(*scan, cloud);     
     //2.点云匹配
 

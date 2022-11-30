@@ -30,6 +30,8 @@ private:
     sm_result output_;
     LDP prev_ldp_scan_;
     ros::Time last_icp_time_;               // 上次的时间戳
+    std::vector<double> a_cos_;             // 保存下来雷达各个角度的cos值
+    std::vector<double> a_sin_;             // 保存下来雷达各个角度的sin值
     
     bool initialized_;
     void InitParams();
