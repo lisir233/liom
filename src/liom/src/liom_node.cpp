@@ -1,4 +1,5 @@
 #include "liom_node.h"
+#include "liom_core.h"
 namespace liom{
 
 Node::Node(){
@@ -10,8 +11,7 @@ Node::Node(){
 }
 void Node::scanCallback(const sensor_msgs::LaserScan::ConstPtr& scan){
     
-
-
+        core.HandleLaserScanMessage(scan);
 }
 
 } //namespace liom

@@ -5,6 +5,8 @@
 #include <laser_geometry/laser_geometry.h>
 #include <sensor_msgs/PointCloud2.h>
 #include "submap.h"
+#include "tfcalculate.h"
+#include "scanmatch.h"
 namespace liom{
 
 class Core{
@@ -14,8 +16,9 @@ public:
     void HandleLaserScanMessage(const sensor_msgs::LaserScan::ConstPtr& scan);
 private:
     laser_geometry::LaserProjection projector_;
+    TfCalculate tfcalculate;
     SubMap submap;
-    
+    ScanMatch scanmatch;
 };
 }
 

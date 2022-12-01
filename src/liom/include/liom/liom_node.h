@@ -6,6 +6,7 @@
 #include <laser_geometry/laser_geometry.h>
 #include <sensor_msgs/LaserScan.h>
 
+#include "liom_core.h"
 namespace liom{
 
 class Node{
@@ -26,6 +27,8 @@ private:
 
     laser_geometry::LaserProjection projector_;
     void scanCallback(const sensor_msgs::LaserScan::ConstPtr& scan);
+
+    Core core;
 };
 }
 #endif //LIOM_NODE_H_

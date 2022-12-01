@@ -131,6 +131,7 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
   ${PCL_INCLUDE_DIRS}
   ${csm_INCLUDE_DIRS} 
+  ${tf2_geometry_msgs_INCLUDE_DIRS}
 )
 link_directories(${csm_LIBRARY_DIRS})
 ## Declare a C++ library
@@ -224,7 +225,7 @@ add_executable(liom_node
  src/scanmatch.cpp
  src/trajectory.cpp 
  src/submap.cpp 
- 
+ src/tfcalculate.cpp
  
  )
 target_link_libraries(liom_node  ${catkin_LIBRARIES}  ${PCL_LIBRARIES} ${csm_LIBRARIES})
