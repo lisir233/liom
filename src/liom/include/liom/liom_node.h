@@ -27,8 +27,10 @@ private:
 
     laser_geometry::LaserProjection projector_;
     void scanCallback(const sensor_msgs::LaserScan::ConstPtr& scan);
-
+    sensor_msgs::PointCloud2  pub_cloud_;
     Core core;
 };
+
+
 }
 #endif //LIOM_NODE_H_

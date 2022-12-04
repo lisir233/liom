@@ -14,11 +14,14 @@ public:
     Core();
     ~Core();
     void HandleLaserScanMessage(const sensor_msgs::LaserScan::ConstPtr& scan);
+    void GetLatestSubmapPtr(SubMap* submap_ptr);
+    pcl::PointCloud<pcl::PointXYZ> pubcloud;
 private:
     laser_geometry::LaserProjection projector_;
     TfCalculate tfcalculate;
     SubMap submap;
     ScanMatch scanmatch;
+
 };
 }
 

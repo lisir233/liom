@@ -69,7 +69,7 @@ void ScanMatch::InitParams()
     input_.max_linear_correction = 0.2;
 
     // Maximum ICP cycle iterations
-    input_.max_iterations = 10;
+    input_.max_iterations = 20;
 
     // A threshold for stopping (m)
     input_.epsilon_xy = 0.000001;
@@ -222,6 +222,9 @@ void ScanMatch::Calculate(const tf2::Transform &first_guess_pose,const sensor_ms
     input_.first_guess[0] = x;
     input_.first_guess[1] = y;
     input_.first_guess[2] = yaw;
+    // input_.first_guess[0] = 0;
+    // input_.first_guess[1] = 0;
+    // input_.first_guess[2] = 0;
      // 如果是第一帧数据，首先进行初始化
     if (!initialized_)
     {
@@ -238,12 +241,13 @@ void ScanMatch::Calculate(const tf2::Transform &first_guess_pose,const sensor_ms
     LDP curr_ldp_scan;
     LaserScanToLDP(scan_msg, curr_ldp_scan);
     ScanMatchWithPLICP(curr_ldp_scan, scan_msg->header.stamp);
+
     tf2::Vector3 result_origin;
     tf2::Matrix3x3  result_rotation;
     result_origin.setX(output_.x[0]);
     result_origin.setY(output_.x[1]);
-    result_rotation.setEulerYPR(0,0,output_.x[2]);
-
+    result_origin.setZ(0);
+    result_rotation.setRPY(0,0,output_.x[2]);
     result_pose.setOrigin(result_origin);
     result_pose.setBasis(result_rotation);
 

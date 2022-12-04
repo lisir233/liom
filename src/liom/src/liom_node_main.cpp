@@ -4,9 +4,9 @@
 int main(int argc, char** argv)
 {
     ::ros::init(argc, argv, "liom_node");
-    
+    ROS_INFO("liom_node main");
+    liom::Node node;
     ::ros::spin();
 
-    liom::Node node();
     return 0;
 }
